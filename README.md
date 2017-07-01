@@ -6,3 +6,5 @@ Basically, run it and cry when there's an unhandled exception. Or better yet, fi
 
 Teaser screenshot:
 ![Teaser image](https://puu.sh/wyxqh/7a6bd3f163.png)
+
+By the way, this application assumes you have OTTD's NML compiler in your environment path. It also assumes you have the willpower to figure it out. ;)
