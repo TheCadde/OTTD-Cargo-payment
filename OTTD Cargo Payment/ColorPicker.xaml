@@ -1,0 +1,71 @@
+﻿<Window x:Class="OTTD_Cargo_Payment.ColorPicker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Color Picker" SizeToContent="WidthAndHeight" Loaded="Window_Loaded" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
+    <Grid Width="600" Height="400">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF343434" Offset="0.489"/>
+                <GradientStop Color="#FF252526"/>
+                <GradientStop Color="#FF292929" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="34"/>
+            <ColumnDefinition Width="166"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="ColorImageGrid" Grid.Column="0">
+            <Image Name="ColorImage" Cursor="Cross" MouseMove="ColorImage_MouseMove" MouseDown="ColorImage_MouseMove" />
+            <Image Name="ColorCross" Cursor="Cross" HorizontalAlignment="Left" VerticalAlignment="Top" Width="10" Height="10" />
+        </Grid>
+        <Image Margin="2, 0" Cursor="ScrollNS" Name="HueImage" Grid.Column="1" MouseMove="HueImage_OnMouseMove" MouseDown="HueImage_OnMouseMove"/>
+        <!--<Image Margin="2, 0" Cursor="ScrollNS" Name="HueMarkerImage" Width="30" Height="13" Grid.Column="1" Source="Resources/huemarker.png" HorizontalAlignment="Left" VerticalAlignment="Top" />-->
+        <Rectangle Margin="2, 0" Cursor="ScrollNS" Name="HueMarkerImage" Width="30" Height="13" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="White" />
+
+        <Grid Column="2">
+            <Border Name="SelectedColorGrid" BorderThickness="3" VerticalAlignment="Top" Height="75" Margin="25, 20">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="1" />
+                        <GradientStop Color="#FF5F5F5F" />
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <Label Name="SelectedColorLabel" >
+                </Label>
+            </Border>
+            <Border Margin="20, 125, 20, 90" BorderThickness="1" CornerRadius="10">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#1900E8FF" Offset="1"/>
+                        <GradientStop Color="#FF00E8FF"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+                <StackPanel Width="110" Margin="0, 10">
+                    <DockPanel>
+                        <Label Width ="50" Content="Red" Foreground="White" />
+                        <TextBox Name="RedText" TextChanged="TextsChanged"/>
+                    </DockPanel>
+                    <Image Name="RedImage" Width="110" Height="10" MouseMove="ColorSliders_OnMouseMove" MouseDown="ColorSliders_OnMouseMove"/>
+                    <DockPanel Margin="0, 5, 0, 0">
+                        <Label Width ="50" Content="Green" Foreground="White" />
+                        <TextBox Name="GreenText" TextChanged="TextsChanged"/>
+                    </DockPanel>
+                    <Image Name="GreenImage" Width="110" Height="10" MouseMove="ColorSliders_OnMouseMove" MouseDown="ColorSliders_OnMouseMove"/>
+                    <DockPanel Margin="0, 5, 0, 0">
+                        <Label Width ="50" Content="Blue" Foreground="White" />
+                        <TextBox Name="BlueText" TextChanged="TextsChanged"/>
+                    </DockPanel>
+                    <Image Name="BlueImage" Width="110" Height="10" MouseMove="ColorSliders_OnMouseMove" MouseDown="ColorSliders_OnMouseMove"/>
+                    <DockPanel Margin="0, 5, 0, 0">
+                        <Label Width ="50" Content="Alpha" Foreground="White" />
+                        <TextBox Name="AlphaText" TextChanged="TextsChanged"/>
+                    </DockPanel>
+                    <Image Name="AlphImage" Width="110" Height="10" MouseMove="ColorSliders_OnMouseMove" MouseDown="ColorSliders_OnMouseMove"/>
+                </StackPanel>
+            </Border>
+            <Button Content="OK" Height="25" Margin="20, 0, 20, 35" VerticalAlignment="Bottom" Click="OkButton_OnClick"/>
+        </Grid>
+
+    </Grid>
+</Window>

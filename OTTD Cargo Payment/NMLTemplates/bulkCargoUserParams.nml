@@ -1,0 +1,22 @@
+switch (FEAT_CARGOS, SELF, switch_{{TypeName}}_cargo_profit,
+[
+    // CALLBACK VARIABLES
+    // 0: distance
+    // 1: time
+    
+    // USER VARIABLES
+    // 2: MaxDistance
+    STORE_TEMP({{MaxDistance}}, 2),
+    // 3: DiminishingReturnsLinearity
+    STORE_TEMP({{DiminishingReturnsLinearity}}, 3),
+    // 4: MaxDeliveryTime
+    STORE_TEMP({{MaxDeliveryTime}}, 4),
+    // 5: LateCargoDivider
+    STORE_TEMP({{LateCargoDivider}}, 5)
+    
+    // CALCULATION VARIABLES
+    // 6: diminishingReturns
+]) {
+    return switch_bulk_cargo_profit;
+}
+

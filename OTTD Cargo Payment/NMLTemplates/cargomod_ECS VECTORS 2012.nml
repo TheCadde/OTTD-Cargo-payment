@@ -1,0 +1,88 @@
+grf {
+    grfid: "CRC\03";
+    name: string(STR_GRF_NAME);
+    desc: string(STR_GRF_DESCRIPTION);
+    version: 1;
+    min_compatible_version: 0;
+}
+
+cargotable {
+    PASS, COAL, MAIL, OIL_, LVST,
+    GOOD, CERE, WOOD, IORE, STEL,
+    GOLD, FOOD, PAPR, FRUT, FISH,
+    WOOL,       SAND, GLAS, WDPR,
+    DYES, FERT, OLSD, REPR, VEHI,
+    PETR, AORE, WATR, BDMT, FICR,
+          TOUR
+}
+
+spriteset (cargoicon_fish, "gfx/cargoicon.png")
+{
+  [33, 43, 16, 16, 0, -3]
+}
+
+spriteset (cargoicon_wool, "gfx/cargoicon.png")
+{
+  [113, 43, 10, 10, 0, 0]
+}
+
+spriteset (cargoicon_fertilizer, "gfx/cargoicon.png")
+{
+  [177, 43, 12, 6, 0, 3]
+}
+
+spriteset (cargoicon_oil_seeds, "gfx/cargoicon.png")
+{
+  [257, 43, 11, 11, 0, 0]
+}
+
+spriteset (cargoicon_fibre_crops, "gfx/cargoicon.png")
+{
+  [321, 43, 11, 10, 0, 0]
+}
+
+spriteset (cargoicon_sand, "gfx/cargoicon.png")
+{
+  [58, 93, 12, 6, 0, 3]
+}
+
+spriteset (cargoicon_glass, "gfx/cargoicon.png")
+{
+  [138, 93, 10, 9, 0, 1]
+}
+
+spriteset (cargoicon_building_materials, "gfx/cargoicon.png")
+{
+  [202, 93, 11, 11, 0, 2]
+}
+
+spriteset (cargoicon_dyes, "gfx/cargoicon.png")
+{
+  [54, 135, 10, 10, 0, 0]
+}
+
+spriteset (cargoicon_refined_products, "gfx/cargoicon.png")
+{
+  [118, 135, 10, 12, -1, -2]
+}
+
+spriteset (cargoicon_petrol, "gfx/cargoicon.png")
+{
+  [182, 135, 10, 12, -1, -2]
+}
+
+spriteset (cargoicon_vehicles, "gfx/cargoicon.png")
+{
+  [50, 190, 14, 12, 0, 1]
+}
+
+spriteset (cargoicon_tourists, "gfx/cargoicon.png")
+{
+  [46, 227, 10, 12, -1, -2]
+}
+
+spriteset (cargoicon_wood_products, "gfx/cargoicon.png")
+{
+  [50, 262, 14, 8, 0, 1]
+}
+

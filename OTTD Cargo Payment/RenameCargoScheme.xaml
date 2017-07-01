@@ -1,0 +1,18 @@
+﻿<Window x:Class="OTTD_Cargo_Payment.RenameCargoScheme"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Rename Cargo Scheme" Height="100" Width="300">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF252525" Offset="1"/>
+            <GradientStop Color="#FF3E3E3E"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <DockPanel>
+        <Button DockPanel.Dock="Right" Content="OK" Padding="7, 0, 7, 0" Click="OkButton_OnClick" IsDefault="True"/>
+        <TextBox DockPanel.Dock="Left" Name="SchemeName"/>
+    </DockPanel>
+</Window>

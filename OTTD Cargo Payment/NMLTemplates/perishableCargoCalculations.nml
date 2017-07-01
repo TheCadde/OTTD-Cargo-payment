@@ -1,0 +1,55 @@
+switch (FEAT_CARGOS, SELF, switch_perishable_cargo_profit,
+[
+    // CALLBACK VARIABLES
+    // 0: distance
+    STORE_TEMP(getbits(extra_callback_info2, 0, 16), 0),
+    // 1: time
+    STORE_TEMP(getbits(extra_callback_info2, 24, 8), 1),
+    
+    // USER VARIABLES
+    // 2: MaxDistance
+    // 3: DiminishingReturnsLinearity
+    // 4: PrimaryDropoffCurveOffset
+    // 5: PrimaryDropoffCurveShortDistanceAdjustment
+    // 6: PrimaryDropoffCurveShortDistanceEnd
+    // 7: PrimaryDropoffCurveMediumDistanceStart
+    // 8: PrimaryDropoffCurveMediumDistanceAdjustment
+    // 9: PrimaryDropoffCurveMediumDistanceEnd
+    // 10: PrimaryDropoffCurveLongDistanceStart
+    // 11: PrimaryDropoffCurveLongDistanceAdjustment
+    // 12: PrimaryDropoffCurveLongDistanceEnd
+    // 13: PrimaryDropoffCurveLongevity
+    // 14: PrimaryDropoffCurveLongevityAdjustment
+    // 15: SecondaryReturnDivisor
+    // 16: FinalReturnDivisor
+    // 17: SecondaryDropoffCurveOffset
+    // 18: SecondaryDropoffCurveDistanceAdjustment
+    // 19: SecondaryDropoffCurveLongevity
+    // 20: SecondaryDropoffCurveLongevityAdjustment
+    
+    // CALCULATION VARIABLES
+    // 21: diminishingReturns
+    STORE_TEMP((100000 - {{DiminishingReturnsLinearity}} * 100000 / (min({{distance}}, {{MaxDistance}}) + {{DiminishingReturnsLinearity}})) / (100 - {{DiminishingReturnsLinearity}} * 100 / ({{MaxDistance}} + {{DiminishingReturnsLinearity}})), 21),
+    
+    // 22: primaryDropoffCurveOffset
+    STORE_TEMP(max(0, {{time}} - ({{PrimaryDropoffCurveOffset}} + min({{PrimaryDropoffCurveShortDistanceEnd}}, {{distance}}) / {{PrimaryDropoffCurveShortDistanceAdjustment}} + max(0, min({{PrimaryDropoffCurveMediumDistanceEnd}}, {{distance}}) - {{PrimaryDropoffCurveMediumDistanceStart}}) / {{PrimaryDropoffCurveMediumDistanceAdjustment}} + max(0, min({{distance}}, {{PrimaryDropoffCurveLongDistanceEnd}}) - {{PrimaryDropoffCurveLongDistanceStart}}) / {{PrimaryDropoffCurveLongDistanceAdjustment}})), 22),
+    
+    // 23: primaryDropoffCurve
+    STORE_TEMP({{primaryDropoffCurveOffset}} * 100 * {{primaryDropoffCurveOffset}} / max(1, {{PrimaryDropoffCurveLongevity}} - {{distance}} / {{PrimaryDropoffCurveLongevityAdjustment}}), 23),
+    
+    // 24: secondaryDropoffCurveOffset
+    STORE_TEMP(max(0, {{time}} - max(0, {{SecondaryDropoffCurveOffset}} + {{distance}} / {{SecondaryDropoffCurveDistanceAdjustment}})), 24),
+    
+    // 25: secondaryDropoffCurve
+    STORE_TEMP({{secondaryDropoffCurveOffset}} * 100 * {{secondaryDropoffCurveOffset}} / max(1, {{SecondaryDropoffCurveLongevity}} - {{distance}} / {{SecondaryDropoffCurveLongevityAdjustment}}), 25)
+]) {
+    return max(1,
+        min(1000,
+            max(
+                {{diminishingReturns}} - {{primaryDropoffCurve}},
+                max({{diminishingReturns}} / {{SecondaryReturnDivisor}} - {{secondaryDropoffCurve}},
+                    {{diminishingReturns}} / {{FinalReturnDivisor}})
+                )
+        ));
+}
+

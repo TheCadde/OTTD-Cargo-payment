@@ -1,0 +1,23 @@
+switch (FEAT_CARGOS, SELF, switch_bulk_cargo_profit,
+[
+    // CALLBACK VARIABLES
+    // 0: distance
+    STORE_TEMP(getbits(extra_callback_info2, 0, 16), 0),
+    // 1: time
+    STORE_TEMP(getbits(extra_callback_info2, 24, 8), 1),
+    
+    // USER VARIABLES
+    // 2: MaxDistance
+    // 3: DiminishingReturnsLinearity
+    // 4: MaxDeliveryTime
+    // 5: LateCargoDivider
+    
+    // CALCULATION VARIABLES
+    // 6: diminishingReturns
+    STORE_TEMP((100000 - {{DiminishingReturnsLinearity}} * 100000 / (min({{distance}}, {{MaxDistance}}) + {{DiminishingReturnsLinearity}})) / (100 - {{DiminishingReturnsLinearity}} * 100 / ({{MaxDistance}} + {{DiminishingReturnsLinearity}})), 6)
+]) {
+    return {{time}} <= {{MaxDeliveryTime}} ?
+                  {{diminishingReturns}} :
+                  {{diminishingReturns}} / {{LateCargoDivider}};
+}
+

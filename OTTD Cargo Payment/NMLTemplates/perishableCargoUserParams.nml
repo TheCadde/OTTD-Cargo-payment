@@ -1,0 +1,56 @@
+switch (FEAT_CARGOS, SELF, switch_{{TypeName}}_cargo_profit,
+[
+    // CALLBACK VARIABLES
+    // 0: distance
+    // 1: time
+    
+    // USER VARIABLES
+    // 2: MaxDistance
+    STORE_TEMP({{MaxDistance}}, 2),
+    // 3: DiminishingReturnsLinearity
+    STORE_TEMP({{DiminishingReturnsLinearity}}, 3),
+    // 4: PrimaryDropoffCurveOffset
+    STORE_TEMP({{PrimaryDropoffCurveOffset}}, 4),
+    // 5: PrimaryDropoffCurveShortDistanceAdjustment
+    STORE_TEMP({{PrimaryDropoffCurveShortDistanceAdjustment}}, 5),
+    // 6: PrimaryDropoffCurveShortDistanceEnd
+    STORE_TEMP({{PrimaryDropoffCurveShortDistanceEnd}}, 6),
+    // 7: PrimaryDropoffCurveMediumDistanceStart
+    STORE_TEMP({{PrimaryDropoffCurveMediumDistanceStart}}, 7),
+    // 8: PrimaryDropoffCurveMediumDistanceAdjustment
+    STORE_TEMP({{PrimaryDropoffCurveMediumDistanceAdjustment}}, 8),
+    // 9: PrimaryDropoffCurveMediumDistanceEnd
+    STORE_TEMP({{PrimaryDropoffCurveMediumDistanceEnd}}, 9),
+    // 10: PrimaryDropoffCurveLongDistanceStart
+    STORE_TEMP({{PrimaryDropoffCurveLongDistanceStart}}, 10),
+    // 11: PrimaryDropoffCurveLongDistanceAdjustment
+    STORE_TEMP({{PrimaryDropoffCurveLongDistanceAdjustment}}, 11),
+    // 12: PrimaryDropoffCurveLongDistanceEnd
+    STORE_TEMP({{PrimaryDropoffCurveLongDistanceEnd}}, 12),
+    // 13: PrimaryDropoffCurveLongevity
+    STORE_TEMP({{PrimaryDropoffCurveLongevity}}, 13),
+    // 14: PrimaryDropoffCurveLongevityAdjustment
+    STORE_TEMP({{PrimaryDropoffCurveLongevityAdjustment}}, 14),
+    // 15: SecondaryReturnDivisor
+    STORE_TEMP({{SecondaryReturnDivisor}}, 15),
+    // 16: FinalReturnDivisor
+    STORE_TEMP({{FinalReturnDivisor}}, 16),
+    // 17: SecondaryDropoffCurveOffset
+    STORE_TEMP({{SecondaryDropoffCurveOffset}}, 17),
+    // 18: SecondaryDropoffCurveDistanceAdjustment
+    STORE_TEMP({{SecondaryDropoffCurveDistanceAdjustment}}, 18),
+    // 19: SecondaryDropoffCurveLongevity
+    STORE_TEMP({{SecondaryDropoffCurveLongevity}}, 19),
+    // 20: SecondaryDropoffCurveLongevityAdjustment
+    STORE_TEMP({{SecondaryDropoffCurveLongevityAdjustment}}, 20)
+    
+    // CALCULATION VARIABLES
+    // 21: diminishingReturns
+    // 22: primaryDropoffCurveOffset
+    // 23: primaryDropoffCurve
+    // 24: secondaryDropoffCurveOffset
+    // 25: secondaryDropoffCurve
+]) {
+    return switch_perishable_cargo_profit;
+}
+
