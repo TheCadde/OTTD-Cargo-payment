@@ -115,7 +115,7 @@ namespace OTTD_Cargo_Payment {
             var lineSerieses = new List<LineSeries>();
             foreach (var metrics in callbackRange.CallbackMetricses) {
                 var lineSeries = new LineSeries {
-                                     Title = $"{cargoDef.TypeName}",
+                                     Title = $"{cargoDef.TypeName} ({metrics.Distance})",
                                      RenderInLegend = false,
                                      TextColor = OxyColors.Yellow,
                                      StrokeThickness = 1,
