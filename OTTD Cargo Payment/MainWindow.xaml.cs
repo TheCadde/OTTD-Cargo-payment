@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 
 using OTTD_Cargo_Payment.CargoDefinitions;
+using OTTD_Cargo_Payment.CargoDefinitions.Metrics;
 using OTTD_Cargo_Payment.NMLTemplates;
 
 using OxyPlot;
@@ -172,6 +173,12 @@ namespace OTTD_Cargo_Payment {
                 } else if (args.ChangedButton == MouseButton.Right) {
                     var menu = new ContextMenu();
 
+                    var showDebugMenuItem = new MenuItem { Header = "Show info",};
+                    showDebugMenuItem.Click += (m, ea) => {
+                        ShowDebug(cargoDef, lineSerieses);
+                    };
+                    menu.Items.Add(showDebugMenuItem);
+
                     var editMenuItem = new MenuItem { Header = "Edit",};
                     editMenuItem.Click += (m, ea) => {
                         OpenEditor(cargoDef);
@@ -191,6 +198,21 @@ namespace OTTD_Cargo_Payment {
             };
 
             Legend.Children.Add(dockPanel);
+        }
+
+        private void ShowDebug(CargoDefinition cargoDef, List<LineSeries> lineSerieses) {
+            var first = lineSerieses.First().Tag as CallbackPerDistanceMetrics;
+            if (first == null) 
+                return;
+            var content = first.GetHeaderString(cargoDef.TypeName);
+            foreach (var series in lineSerieses) {
+                var metrics = series.Tag as CallbackPerDistanceMetrics;
+                if (metrics == null)
+                    continue;
+                content += $"\n{metrics.GetDataString()}";
+            }
+            var wnd = new DebugInfoWindow(cargoDef.TypeName, content);
+            wnd.Show();
         }
 
         private void OpenEditor(CargoDefinition cargoDef) {
